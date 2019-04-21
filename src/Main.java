@@ -10,6 +10,7 @@ public class Main {
 		
 		frame.add(game);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
 		frame.setTitle("Matopeli");
 		frame.pack();
 		frame.setLocationRelativeTo(null);

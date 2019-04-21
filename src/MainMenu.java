@@ -46,7 +46,7 @@ public class MainMenu {
 		g.drawString("PELI PÄÄTTYI", Game.WIDTH/5, 100);
 		Font font1 = new Font("arial", Font.BOLD, 35);
 		g.setFont(font1);
-		g.drawString("Tuloksesi: " + (Game.snake.size()-5), Game.WIDTH/5 + 40, 150);
+		g.drawString("Tuloksesi: " + (Game.getScore()), Game.WIDTH/5 + 40, 150);
 		
 		// nappien tekstit
 		Font font2 = new Font("arial", Font.BOLD, 25);

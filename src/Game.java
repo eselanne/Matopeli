@@ -25,6 +25,7 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 	private Random r;
 	private int xCoord = 10, yCoord = 10, size = 5;
 	private int ticks = 0;
+	public static int score = 0;
 	
 	private MainMenu menu;
 	
@@ -52,17 +53,16 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 		xCoord = 10;
 		yCoord = 10;
 		size = 5;
+		score = 0;
 		
 		this.right = true;
 		this.left = false;
 		this.up = false;
 		this.down = false;
 		
-		//ticks = 0;
 		
 		snake = new ArrayList<Snakeblock>();
 		apples = new ArrayList<Apple>();
-		//r = new Random();
 		
 	}
 	
@@ -126,13 +126,13 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 					size++;
 					apples.remove(i);
 					i++;
+					score++;
 				}
 			}
 			//Törmäys matoon
 			for(int i = 0; i < snake.size(); i++) {
 				if(xCoord == snake.get(i).getxCoord() && yCoord == snake.get(i).getyCoord()) {
 					if (i != snake.size()-1) {
-						System.out.println("Game Over");
 						State = STATE.GAMEOVER;
 						//stop();
 					}
@@ -140,12 +140,15 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 			}
 			//Törmäys seinään
 			if(xCoord < 0 || xCoord > 49 || yCoord < 0 || yCoord > 49) {
-				System.out.println("Game Over");
 				State = STATE.GAMEOVER;
 				//stop();
 			}
 			
 		}		
+	}
+	
+	public static int getScore() {
+		return score;
 	}
 	
 	public void paint(Graphics g) {
