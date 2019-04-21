@@ -255,45 +255,49 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 		int mx = e.getX();
 		int my = e.getY();
 		
-		// pelaa-nappi
-		if(mx >= Game.WIDTH/4 + 70 && mx <= Game.WIDTH/4 + 70 + 100) {
-			if(my >= 150 && my <= 200) {
-				// painettu play-nappi
-				State = STATE.GAME;
+		if(State == STATE.MENU) {
+			// pelaa-nappi
+			if(mx >= Game.WIDTH/4 + 70 && mx <= Game.WIDTH/4 + 70 + 100) {
+				if(my >= 150 && my <= 200) {
+					// painettu play-nappi
+					State = STATE.GAME;
+				}
+			}
+			
+			// ohjeet-nappi
+			if(mx >= Game.WIDTH/4 + 15 && mx <= Game.WIDTH/4 + 15 + 210) {
+				if(my >= 250 && my <= 300) {
+					// painettu highscore-nappi
+					State = STATE.OHJEET;
+				}
+			}
+			
+			// poistu-nappi
+			if(mx >= Game.WIDTH/4 + 70 && mx <= Game.WIDTH/4 + 70 + 100) {
+				if(my >= 350 && my <= 400) {
+					// painettu poistu-nappi
+					System.exit(1);
+				}
 			}
 		}
 		
-		// ohjeet-nappi
-		if(mx >= Game.WIDTH/4 + 15 && mx <= Game.WIDTH/4 + 15 + 210) {
-			if(my >= 250 && my <= 300) {
-				// painettu highscore-nappi
-				State = STATE.OHJEET;
+		if(State == STATE.GAMEOVER) {
+			// uusipeli-nappi
+			if(mx >= Game.WIDTH/4 + 70 && mx <= Game.WIDTH/4 + 70 + 130) {
+				if(my >= 200 && my <= 250) {
+					restart();
+					State = STATE.GAME;
+					//xCoord = 10;
+					//yCoord = 10;
+				}
 			}
-		}
-		
-		// poistu-nappi
-		if(mx >= Game.WIDTH/4 + 70 && mx <= Game.WIDTH/4 + 70 + 100) {
-			if(my >= 350 && my <= 400) {
-				// painettu poistu-nappi
-				System.exit(1);
-			}
-		}
-		
-		// uusipeli-nappi
-		if(mx >= Game.WIDTH/4 + 70 && mx <= Game.WIDTH/4 + 70 + 130) {
-			if(my >= 200 && my <= 250) {
-				State = STATE.GAME;
-				//xCoord = 10;
-				//yCoord = 10;
-				restart();
-			}
-		}
-		
-		// päävalikko-nappi
-		if(mx >= Game.WIDTH/4 + 45 && mx <= Game.WIDTH/4 + 45 + 180) {
-			if(my >= 300 && my <= 350) {
-				restart();
-				State = STATE.MENU;
+			
+			// päävalikko-nappi
+			if(mx >= Game.WIDTH/4 + 45 && mx <= Game.WIDTH/4 + 45 + 180) {
+				if(my >= 300 && my <= 350) {
+					restart();
+					State = STATE.MENU;
+				}
 			}
 		}
 		
