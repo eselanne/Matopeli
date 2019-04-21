@@ -115,8 +115,8 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 				if(xCoord == snake.get(i).getxCoord() && yCoord == snake.get(i).getyCoord()) {
 					if (i != snake.size()-1) {
 						System.out.println("Game Over");
-						stop();
-						State = STATE.MENU;
+						//stop();
+						State = STATE.GAMEOVER;
 					}
 				}
 			}
