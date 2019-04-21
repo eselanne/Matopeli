@@ -19,18 +19,18 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 	private boolean running;
 	private boolean right = true, left = false, up = false, down = false;
 	private Snakeblock s;
-	private ArrayList<Snakeblock> snake;
+	public static ArrayList<Snakeblock> snake;
 	private Apple apple;
 	private ArrayList<Apple> apples;
 	private Random r;
 	private int xCoord = 10, yCoord = 10, size = 5;
 	private int ticks = 0;
 	
-	private MainMenu menu = new MainMenu();
+	private MainMenu menu;
 	
 	// kuvaa ohjelman tilaa
 	private enum STATE{
-		GAME, MENU
+		GAME, MENU, GAMEOVER
 	};
 	
 	// ohjelman tila
@@ -44,6 +44,7 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 		snake = new ArrayList<Snakeblock> ();
 		apples = new ArrayList<Apple>();
 		r = new Random();
+		menu = new MainMenu();
 		start();
 	}
 	
@@ -113,15 +114,17 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 			for(int i = 0; i < snake.size(); i++) {
 				if(xCoord == snake.get(i).getxCoord() && yCoord == snake.get(i).getyCoord()) {
 					if (i != snake.size()-1) {
-						System.out.println("Gameover");
+						System.out.println("Game Over");
 						stop();
+						State = STATE.MENU;
 					}
 				}
 			}
 			//Törmäys seinään
 			if(xCoord < 0 || xCoord > 49 || yCoord < 0 || yCoord > 49) {
 				System.out.println("Game Over");
-				stop();
+				State = STATE.GAMEOVER;
+				//stop();
 			}
 			
 		}		
@@ -148,6 +151,8 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 			}
 		}else if(State == STATE.MENU) {
 			menu.render(g);
+		}else if(State == STATE.GAMEOVER) {
+			menu.renderGameOver(g);
 		}
 	}
 	
@@ -251,6 +256,19 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 			}
 		}
 		
+		// uusipeli-nappi
+		if(mx >= Game.WIDTH/4 + 70 && mx <= Game.WIDTH/4 + 70 + 130) {
+			if(my >= 200 && my <= 250) {
+				State = STATE.GAME;
+			}
+		}
+		
+		// päävalikko-nappi
+		if(mx >= Game.WIDTH/4 + 45 && mx <= Game.WIDTH/4 + 45 + 180) {
+			if(my >= 300 && my <= 350) {
+				State = STATE.MENU;
+			}
+		}
 	}
 
 	@Override
