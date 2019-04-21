@@ -48,6 +48,24 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 		start();
 	}
 	
+	public void restart() {
+		xCoord = 10;
+		yCoord = 10;
+		size = 5;
+		
+		this.right = true;
+		this.left = false;
+		this.up = false;
+		this.down = false;
+		
+		//ticks = 0;
+		
+		snake = new ArrayList<Snakeblock>();
+		apples = new ArrayList<Apple>();
+		//r = new Random();
+		
+	}
+	
 	public void start() {
 		running = true;
 		thread = new Thread(this);
@@ -115,8 +133,8 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 				if(xCoord == snake.get(i).getxCoord() && yCoord == snake.get(i).getyCoord()) {
 					if (i != snake.size()-1) {
 						System.out.println("Game Over");
-						//stop();
 						State = STATE.GAMEOVER;
+						//stop();
 					}
 				}
 			}
@@ -260,12 +278,16 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 		if(mx >= Game.WIDTH/4 + 70 && mx <= Game.WIDTH/4 + 70 + 130) {
 			if(my >= 200 && my <= 250) {
 				State = STATE.GAME;
+				//xCoord = 10;
+				//yCoord = 10;
+				restart();
 			}
 		}
 		
 		// päävalikko-nappi
 		if(mx >= Game.WIDTH/4 + 45 && mx <= Game.WIDTH/4 + 45 + 180) {
 			if(my >= 300 && my <= 350) {
+				restart();
 				State = STATE.MENU;
 			}
 		}
