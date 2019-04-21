@@ -44,6 +44,7 @@ public class MainMenu {
 		g.setFont(font0);
 		g.setColor(Color.white);
 		g.drawString("PELI PÄÄTTYI", Game.WIDTH/5, 100);
+		
 		Font font1 = new Font("arial", Font.BOLD, 35);
 		g.setFont(font1);
 		g.drawString("Tuloksesi: " + (Game.getScore()), Game.WIDTH/5 + 40, 150);
@@ -63,19 +64,23 @@ public class MainMenu {
 	
 	public void renderOhjeet(Graphics g) {
 		
-		//ohjeet
-		Font font = new Font("arial", Font.BOLD, 25);
-		g.setFont(font);
+		// otsikko
+		Font font0 = new Font("century gothic", Font.BOLD, 50);
+		g.setFont(font0);
 		g.setColor(Color.white);
-		g.drawString("Peliohjeet:", Game.WIDTH/3, 100);
-		Font font5 = new Font("arial", Font.BOLD, 25);
-		g.setFont(font5);
+		g.drawString("OHJEET", Game.WIDTH/3, 100);
+		
+		Font font1 = new Font("arial", Font.BOLD, 20);
+		g.setFont(font1);
 		g.setColor(Color.white);
-		g.drawString("Liikuta matoa nuolinäppäimillä ja", Game.WIDTH/6, 200);
-		g.drawString("yritä osua omenaan", Game.WIDTH/6, 250);
+		g.drawString("Liikuta matoa nuolinäppäimillä ja yritä syödä", Game.WIDTH/15, 180);
+		g.drawString("mahdollisimman monta omenaa. Syömällä niitä", Game.WIDTH/15, 215);
+		g.drawString("madosta tulee isompi ja vaikeampi hallita.", Game.WIDTH/15, 250);
 		
 		
-		//nappi
+		//napin teksti
+		Font font2 = new Font("arial", Font.BOLD, 25);
+		g.setFont(font2);
 		g.drawString("Päävalikkoon", paavalikkoonNappi.x + 10, paavalikkoonNappi.y + 35);
 		
 		//napin laatikko
