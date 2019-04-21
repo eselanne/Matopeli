@@ -15,6 +15,15 @@ public class Game extends JPanel implements Runnable {
 	private ArrayList<Snakeblock> snake;
 	private int xCoord = 10, yCoord = 10, size = 5;
 	
+	// kuvaa ohjelman tilaa
+	private enum STATE{
+		GAME,
+		MENU
+	};
+	
+	// ohjelman tila
+	// private STATE State = STATE.MENU;
+	
 	public Game() {
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 	}
