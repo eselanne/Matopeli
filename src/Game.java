@@ -25,13 +25,13 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 	private boolean running;
 	private boolean right = true, left = false, up = false, down = false;
 	private Snakeblock s;
-	public static ArrayList<Snakeblock> snake;
+	private ArrayList<Snakeblock> snake;
 	private Apple apple;
 	private ArrayList<Apple> apples;
 	private Random r;
 	private int xCoord = 10, yCoord = 10, size = 5;
 	private int ticks = 0;
-	private int highScore;
+	public static int highScore;
 	public static int score = 0;
 	private MainMenu menu;
 	File hsFile;
@@ -102,7 +102,7 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 				snake.add(s);
 			}
 			ticks++;
-			if(ticks > 500000) {
+			if(ticks > 750000) {
 				if (right) {
 					xCoord++;
 				}

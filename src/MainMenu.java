@@ -35,6 +35,11 @@ public class MainMenu {
 		g2d.draw(playNappi);
 		g2d.draw(ohjeetNappi);
 		g2d.draw(exitNappi);
+		
+		// high score teksti
+		Font font2 = new Font("monospaced", Font.PLAIN, 30);
+		g.setFont(font2);
+		g.drawString("Ennätys: " + Game.highScore, Game.WIDTH/4 + 20, 460);
 	}
 	
 	public void renderGameOver(Graphics g) {
@@ -45,9 +50,9 @@ public class MainMenu {
 		g.setColor(Color.white);
 		g.drawString("PELI PÄÄTTYI", Game.WIDTH/5, 100);
 		
-		Font font1 = new Font("arial", Font.BOLD, 35);
+		Font font1 = new Font("monospaced", Font.PLAIN, 35);
 		g.setFont(font1);
-		g.drawString("Tuloksesi: " + (Game.getScore()), Game.WIDTH/5 + 40, 150);
+		g.drawString("Tuloksesi: " + (Game.getScore()), Game.WIDTH/5 + 30, 150);
 		
 		// nappien tekstit
 		Font font2 = new Font("arial", Font.BOLD, 25);
