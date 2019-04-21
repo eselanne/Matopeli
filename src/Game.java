@@ -1,13 +1,19 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.Random;
+import java.util.Scanner;
 
 import javax.swing.JPanel;
 
@@ -25,9 +31,10 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 	private Random r;
 	private int xCoord = 10, yCoord = 10, size = 5;
 	private int ticks = 0;
+	private int highScore;
 	public static int score = 0;
-	
 	private MainMenu menu;
+	File hsFile;
 	
 	// kuvaa ohjelman tilaa
 	private enum STATE{
@@ -42,10 +49,15 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		addKeyListener(this);
 		addMouseListener(this);
+		
 		snake = new ArrayList<Snakeblock> ();
 		apples = new ArrayList<Apple>();
 		r = new Random();
 		menu = new MainMenu();
+		
+		hsFile = new File(".//res//highscore.txt");
+		highScore = lueHighScore();
+		
 		start();
 	}
 	
@@ -133,15 +145,23 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 			for(int i = 0; i < snake.size(); i++) {
 				if(xCoord == snake.get(i).getxCoord() && yCoord == snake.get(i).getyCoord()) {
 					if (i != snake.size()-1) {
+						if(score > highScore) {
+							highScore = score;
+							uusiEnnatys();
+						}
 						State = STATE.GAMEOVER;
-						//stop();
+						
 					}
 				}
 			}
 			//Törmäys seinään
 			if(xCoord < 0 || xCoord > 49 || yCoord < 0 || yCoord > 49) {
+				if(score > highScore) {
+					highScore = score;
+					uusiEnnatys();
+				}
 				State = STATE.GAMEOVER;
-				//stop();
+				
 			}
 			
 		}		
@@ -184,6 +204,33 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 		while(running) {
 			tick();
 			repaint();
+		}
+	}
+	
+	public int lueHighScore(){
+		Scanner lukija;
+		int hs = 0;
+		try {
+			lukija = new Scanner(hsFile);
+			hs = Integer.parseInt(lukija.nextLine()); 
+			lukija.close();
+			System.out.println(hs);
+		} catch (FileNotFoundException e0) {
+			e0.printStackTrace();
+		} catch (NoSuchElementException e1) {
+		}
+		return hs;
+	}
+	
+	public void uusiEnnatys() {
+		try {
+			FileWriter fw = new FileWriter(hsFile,false);
+			PrintWriter pw = new PrintWriter(fw);
+			pw.print(score);
+			pw.close();
+			fw.close();
+		} catch (IOException e) {		
+			
 		}
 	}
 
