@@ -267,7 +267,7 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 			// ohjeet-nappi
 			if(mx >= Game.WIDTH/4 + 15 && mx <= Game.WIDTH/4 + 15 + 210) {
 				if(my >= 250 && my <= 300) {
-					// painettu highscore-nappi
+					// painettu ohjeet-nappi
 					State = STATE.OHJEET;
 				}
 			}
@@ -292,6 +292,16 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 				}
 			}
 			
+			// päävalikko-nappi
+			if(mx >= Game.WIDTH/4 + 45 && mx <= Game.WIDTH/4 + 45 + 180) {
+				if(my >= 300 && my <= 350) {
+					restart();
+					State = STATE.MENU;
+				}
+			}
+		}
+		
+		if(State == STATE.OHJEET) {
 			// päävalikko-nappi
 			if(mx >= Game.WIDTH/4 + 45 && mx <= Game.WIDTH/4 + 45 + 180) {
 				if(my >= 300 && my <= 350) {
