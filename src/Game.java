@@ -15,6 +15,7 @@ import java.util.NoSuchElementException;
 import java.util.Random;
 import java.util.Scanner;
 
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 public class Game extends JPanel implements Runnable, KeyListener, MouseListener {
@@ -35,6 +36,7 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 	public static int score = 0;
 	private MainMenu menu;
 	File hsFile;
+	ImageIcon tausta;
 	
 	// kuvaa ohjelman tilaa
 	private enum STATE{
@@ -54,6 +56,7 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 		apples = new ArrayList<Apple>();
 		r = new Random();
 		menu = new MainMenu();
+		tausta = new ImageIcon(getClass().getClassLoader().getResource("tausta_reunoilla.png"));
 		
 		hsFile = new File(".//res//highscore.txt");
 		highScore = lueHighScore();
@@ -173,17 +176,19 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 	
 	public void paint(Graphics g) {
 		g.clearRect(0, 0, WIDTH, HEIGHT);
-		g.setColor(Color.black);
+		g.setColor(Color.gray);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
+		g.drawImage(tausta.getImage(), 0, 0, WIDTH, HEIGHT, null);
+
 		
 		if(State == STATE.GAME) {
-		
+		/**
 			for(int i = 0; i < WIDTH/10; i++) {
 				g.drawLine(i*10, 0, i*10, HEIGHT);
 			}
 			for(int i = 0; i < HEIGHT/10; i++) {
 				g.drawLine(0, i*10,HEIGHT , i*10);
-			}
+			}*/
 			for (int i = 0; i < snake.size(); i++) {
 				snake.get(i).draw(g);
 			}
