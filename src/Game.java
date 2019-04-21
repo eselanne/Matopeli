@@ -305,7 +305,7 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 			// päävalikko-nappi
 			if(mx >= Game.WIDTH/4 + 45 && mx <= Game.WIDTH/4 + 45 + 180) {
 				if(my >= 300 && my <= 350) {
-					restart();
+					//restart();
 					State = STATE.MENU;
 				}
 			}
