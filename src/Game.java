@@ -14,6 +14,7 @@ public class Game extends JPanel implements Runnable {
 	private Snakeblock s;
 	private ArrayList<Snakeblock> snake;
 	private int xCoord = 10, yCoord = 10, size = 5;
+	private int testi123;
 	
 	public Game() {
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
