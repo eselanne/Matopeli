@@ -6,13 +6,6 @@ public class MainMenu {
 		
 	
 	
-	JFrame frame = new JFrame();
-	
-	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	frame.setTitle("Matopeli");
-	frame.setSize(700, 700);
-	frame.setVisible(true);
-	
 	
 	}
 }
