@@ -1,8 +1,11 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
 
 public class Apple {
 	private int xCoord, yCoord, width, height;
+	private Image omena;
 	
 	public Apple(int xCoord, int yCoord, int tileSize) {
 		this.xCoord = xCoord;
@@ -33,8 +36,10 @@ public class Apple {
 	}
 	
 	public void draw (Graphics g) {
-		g.setColor(Color.red);
-		g.fillRect(xCoord * width, yCoord*height, width, height);
+		omena = Toolkit.getDefaultToolkit().getImage("omena.png");
+		//g.setColor(Color.red);
+		//g.fillRect(xCoord * width, yCoord*height, width, height);
+		g.drawImage(omena, xCoord * width, yCoord*height, width, height, null);
 	}
 
 }
