@@ -8,7 +8,7 @@ public class MainMenu {
 	
 	// main menu
 	public Rectangle playNappi = new Rectangle(Game.WIDTH/4 + 70, 150, 100, 50);
-	public Rectangle highScoreNappi = new Rectangle(Game.WIDTH/4 + 15, 250, 210, 50);
+	public Rectangle ohjeetNappi = new Rectangle(Game.WIDTH/4 + 70, 250, 100 , 50);
 	public Rectangle exitNappi = new Rectangle(Game.WIDTH/4 + 70, 350, 100, 50);
 	
 	// game over
@@ -27,13 +27,13 @@ public class MainMenu {
 		Font font1 = new Font("arial", Font.BOLD, 25);
 		g.setFont(font1);
 		g.drawString("Pelaa", playNappi.x + 18, playNappi.y + 35);
-		g.drawString("Parhaat tulokset", highScoreNappi.x + 10, highScoreNappi.y + 35);
+		g.drawString("Ohjeet", ohjeetNappi.x + 10, ohjeetNappi.y + 35);
 		g.drawString("Poistu", exitNappi.x + 14, exitNappi.y + 35);
 		
 		// nappien laatikot
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.draw(playNappi);
-		g2d.draw(highScoreNappi);
+		g2d.draw(ohjeetNappi);
 		g2d.draw(exitNappi);
 	}
 	
@@ -59,5 +59,27 @@ public class MainMenu {
 		g2d.draw(uusiPeliNappi);
 		g2d.draw(paavalikkoonNappi);
 		
+	}
+	
+	public void renderOhjeet(Graphics g) {
+		
+		//ohjeet
+		Font font = new Font("arial", Font.BOLD, 25);
+		g.setFont(font);
+		g.setColor(Color.white);
+		g.drawString("Peliohjeet:", Game.WIDTH/3, 100);
+		Font font5 = new Font("arial", Font.BOLD, 25);
+		g.setFont(font5);
+		g.setColor(Color.white);
+		g.drawString("Liikuta matoa nuolin‰pp‰imill‰ ja", Game.WIDTH/6, 200);
+		g.drawString("yrit‰ osua omenaan", Game.WIDTH/6, 250);
+		
+		
+		//nappi
+		g.drawString("P‰‰valikkoon", paavalikkoonNappi.x + 10, paavalikkoonNappi.y + 35);
+		
+		//napin laatikko
+		Graphics2D g2d = (Graphics2D) g;
+		g2d.draw(paavalikkoonNappi);
 	}
 }

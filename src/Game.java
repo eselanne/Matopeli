@@ -31,7 +31,7 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 	
 	// kuvaa ohjelman tilaa
 	private enum STATE{
-		GAME, MENU, GAMEOVER
+		GAME, MENU, GAMEOVER, OHJEET
 	};
 	
 	// ohjelman tila
@@ -174,6 +174,8 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 			menu.render(g);
 		}else if(State == STATE.GAMEOVER) {
 			menu.renderGameOver(g);
+		}else if (State == STATE.OHJEET) {
+			menu.renderOhjeet(g);
 		}
 	}
 	
@@ -261,11 +263,11 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 			}
 		}
 		
-		// highscore-nappi
+		// ohjeet-nappi
 		if(mx >= Game.WIDTH/4 + 15 && mx <= Game.WIDTH/4 + 15 + 210) {
 			if(my >= 250 && my <= 300) {
 				// painettu highscore-nappi
-				//State = STATE.HIGHSCORE;
+				State = STATE.OHJEET;
 			}
 		}
 		
@@ -294,6 +296,7 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 				State = STATE.MENU;
 			}
 		}
+		
 	}
 
 	@Override
