@@ -1,9 +1,12 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
 
 public class Snakeblock {
 	
 	private int xCoord, yCoord, width, height;
+	private Image kaarme;
 	
 	public Snakeblock(int xCoord, int yCoord, int tileSize) {
 		this.xCoord = xCoord;
@@ -18,8 +21,12 @@ public class Snakeblock {
 	}
 	
 	public void draw(Graphics g) {
-		g.setColor(Color.cyan);
-		g.fillRect(xCoord * width, yCoord * height, width, height);
+		kaarme = Toolkit.getDefaultToolkit().getImage("snake.png");
+		
+		//g.setColor(Color.cyan);
+		//g.fillRect(xCoord * width, yCoord * height, width, height);
+		
+		g.drawImage(kaarme, xCoord * width, yCoord*height, width, height, null);
 	}
 
 	public int getxCoord() {
