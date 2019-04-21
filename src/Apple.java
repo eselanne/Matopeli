@@ -3,9 +3,11 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 
+import javax.swing.ImageIcon;
+
 public class Apple {
 	private int xCoord, yCoord, width, height;
-	private Image omena;
+	private ImageIcon omena;
 	
 	public Apple(int xCoord, int yCoord, int tileSize) {
 		this.xCoord = xCoord;
@@ -36,10 +38,12 @@ public class Apple {
 	}
 	
 	public void draw (Graphics g) {
-		omena = Toolkit.getDefaultToolkit().getImage("omena.png");
+		//omena = Toolkit.getDefaultToolkit().getImage("omena.png");
+		omena = new ImageIcon(getClass().getClassLoader().getResource("omena.png"));
+		
 		//g.setColor(Color.red);
 		//g.fillRect(xCoord * width, yCoord*height, width, height);
-		g.drawImage(omena, xCoord * width, yCoord*height, width, height, null);
+		g.drawImage(omena.getImage(), xCoord * width, yCoord*height, width, height, null);
 	}
 
 }
