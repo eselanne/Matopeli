@@ -7,6 +7,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.JPanel;
 
@@ -19,6 +20,9 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 	private boolean right = true, left = false, up = false, down = false;
 	private Snakeblock s;
 	private ArrayList<Snakeblock> snake;
+	private Apple apple;
+	private ArrayList<Apple> apples;
+	private Random r;
 	private int xCoord = 10, yCoord = 10, size = 5;
 	private int ticks = 0;
 	
@@ -38,6 +42,8 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 		addKeyListener(this);
 		addMouseListener(this);
 		snake = new ArrayList<Snakeblock> ();
+		apples = new ArrayList<Apple>();
+		r = new Random();
 		start();
 	}
 	
@@ -65,7 +71,7 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 				snake.add(s);
 			}
 			ticks++;
-			if(ticks > 250000) {
+			if(ticks > 500000) {
 				if (right) {
 					xCoord++;
 				}
@@ -88,6 +94,36 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 					snake.remove(0);
 				}
 			}
+			if (apples.size() ==0) {
+				int xCoord =r.nextInt(49);
+				int yCoord =r.nextInt(49);
+				
+				apple = new Apple(xCoord, yCoord,10);
+				apples.add(apple);
+				
+			}
+			for (int i = 0; i < apples.size();i++) {
+				if (xCoord == apples.get(i).getxCoord() && yCoord ==  apples.get(i).getyCoord() ) {
+					size++;
+					apples.remove(i);
+					i++;
+				}
+			}
+			//Törmäys matoon
+			for(int i = 0; i < snake.size(); i++) {
+				if(xCoord == snake.get(i).getxCoord() && yCoord == snake.get(i).getyCoord()) {
+					if (i != snake.size()-1) {
+						System.out.println("Gameover");
+						stop();
+					}
+				}
+			}
+			//Törmäys seinään
+			if(xCoord < 0 || xCoord > 49 || yCoord < 0 || yCoord > 49) {
+				System.out.println("Game Over");
+				stop();
+			}
+			
 		}		
 	}
 	
@@ -106,6 +142,9 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 			}
 			for (int i = 0; i < snake.size(); i++) {
 				snake.get(i).draw(g);
+			}
+			for(int i = 0; i < apples.size(); i++) {
+				apples.get(i).draw(g);
 			}
 		}else if(State == STATE.MENU) {
 			menu.render(g);
