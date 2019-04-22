@@ -7,9 +7,7 @@ stages:
 perftest_builder:
     stage: build
     script:
-        - "javac src/"
-
-
+        - "javac -cp src/ -d out src/Main.java"
     artifacts:
         paths:
             - "src/Snakeblock.class"
