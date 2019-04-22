@@ -15,11 +15,11 @@ perftest_builder:
 
     artifacts:
         paths:
-            - "src/Snakeblock.class"
-            - "src/Apple.class"
-            - "src/Game.class"
-            - "src/Main.class"
-            - "src/MainMenu.class"
+            - "bin/Snakeblock.class"
+            - "bin/Apple.class"
+            - "bin/Game.class"
+            - "bin/Main.class"
+            - "bin/MainMenu.class"
             
 perftest_validator:
     stage: test
