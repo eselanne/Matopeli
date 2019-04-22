@@ -15,9 +15,9 @@ perftest_builder:
 
     artifacts:
         paths:
-            - "src/Snakeblock.class"
-            - "src/Apple.class"
-            - "src/Game.class"
-            - "src/Main.class"
-            - "src/MainMenu.class"
+            - "src/Snakeblock.*"
+            - "src/Apple.*"
+            - "src/Game.*"
+            - "src/Main.*"
+            - "src/MainMenu.*"
             
