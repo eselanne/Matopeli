@@ -1,16 +1,20 @@
+image: openjdk:11
+
 stages:
     - build
     - test
     
-build:
+perftest_builder:
     stage: build
     script:
-        - javac Main.java
+         - "javac src/Main.java"
     artifacts:
         paths:
-            - Main.class
+            - "src/Main.class"
             
-test:
-    stage: execute
-    script: 
-        - java Main
+perftest_validator:
+    stage: test
+    before_script:
+        - "javac src/Main.java"
+    script:
+        - "java src.Main"
