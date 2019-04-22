@@ -1,0 +1,18 @@
+image: openjdk:11
+
+stages:
+    - build
+    - excecute
+    
+perftest_builder:
+    stage: build
+    script:
+        - "javac src/Main.java"
+    artifacts:
+        paths:
+            - "src/Main.class"
+            
+perftest_builder:
+    stage: execute
+    script:
+        - "java src/Main"
