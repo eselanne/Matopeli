@@ -39,7 +39,7 @@ public class MainMenu {
 		// high score teksti
 		Font font2 = new Font("monospaced", Font.PLAIN, 30);
 		g.setFont(font2);
-		g.drawString("Enn‰tys: " + Game.highScore, Game.WIDTH/4 + 20, 460);
+		g.drawString("Enn√§tys: " + Game.highScore, Game.WIDTH/4 + 20, 460);
 	}
 	
 	public void renderGameOver(Graphics g) {
@@ -48,7 +48,7 @@ public class MainMenu {
 		Font font0 = new Font("century gothic", Font.BOLD, 50);
 		g.setFont(font0);
 		g.setColor(Color.white);
-		g.drawString("PELI PƒƒTTYI", Game.WIDTH/5, 100);
+		g.drawString("PELI P√Ñ√ÑTTYI", Game.WIDTH/5, 100);
 		
 		Font font1 = new Font("monospaced", Font.PLAIN, 35);
 		g.setFont(font1);
@@ -58,7 +58,7 @@ public class MainMenu {
 		Font font2 = new Font("arial", Font.BOLD, 25);
 		g.setFont(font2);
 		g.drawString("Uusi peli", uusiPeliNappi.x + 15, uusiPeliNappi.y + 35);
-		g.drawString("P‰‰valikkoon", paavalikkoonNappi.x + 10, paavalikkoonNappi.y + 35);
+		g.drawString("P√§√§valikkoon", paavalikkoonNappi.x + 10, paavalikkoonNappi.y + 35);
 		
 		// nappien laatikot
 		Graphics2D g2d = (Graphics2D) g;
@@ -78,15 +78,15 @@ public class MainMenu {
 		Font font1 = new Font("arial", Font.BOLD, 20);
 		g.setFont(font1);
 		g.setColor(Color.white);
-		g.drawString("Liikuta matoa nuolin‰pp‰imill‰ ja yrit‰ syˆd‰", Game.WIDTH/15, 180);
-		g.drawString("mahdollisimman monta omenaa. Syˆm‰ll‰ niit‰", Game.WIDTH/15, 215);
+		g.drawString("Liikuta matoa nuolin√§pp√§imill√§ ja yrit√§ sy√∂d√§", Game.WIDTH/15, 180);
+		g.drawString("mahdollisimman monta omenaa. Sy√∂m√§ll√§ niit√§", Game.WIDTH/15, 215);
 		g.drawString("madosta tulee isompi ja vaikeampi hallita.", Game.WIDTH/15, 250);
 		
 		
 		//napin teksti
 		Font font2 = new Font("arial", Font.BOLD, 25);
 		g.setFont(font2);
-		g.drawString("P‰‰valikkoon", paavalikkoonNappi.x + 10, paavalikkoonNappi.y + 35);
+		g.drawString("P√§√§valikkoon", paavalikkoonNappi.x + 10, paavalikkoonNappi.y + 35);
 		
 		//napin laatikko
 		Graphics2D g2d = (Graphics2D) g;
