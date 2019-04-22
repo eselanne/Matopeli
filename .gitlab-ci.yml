@@ -19,10 +19,6 @@ perftest_builder:
 perftest_validator:
     stage: test
     before_script:
-        - "javac src/Snakeblock.java"
-        - "javac src/Apple.java"
-        - "javac src/Game.java"
-        - "javac src/Main.java"
-        - "javac src/MainMenu.java"
+        - "javac -cp src/ -d out src/Main.java"
     script:
-        - "java src.Main"
+        - "java -cp out src.Main"
