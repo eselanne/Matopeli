@@ -1,16 +1,16 @@
-image: java:latest
-
 stages:
     - build
-    - excecute
+    - test
     
 build:
     stage: build
-    script: /usr/lib/jvm/java-8-openjdk-amd64/bin/javac Main.java
+    script:
+        - javac Main.java
     artifacts:
         paths:
-            - Main.*
+            - Main.class
             
-execute:
+test:
     stage: execute
-    script: /usr/lib/jvm/java-8-openjdk-amd64/bin/java Main
+    script: 
+        - java Main
