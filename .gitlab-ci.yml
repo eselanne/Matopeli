@@ -2,7 +2,6 @@ image: openjdk:11
 
 stages:
     - build
-    - execute
     
 build:
     stage: build
@@ -21,7 +20,3 @@ build:
             - "bin/Main.class"
             - "bin/MainMenu.class"
             
-execute:
-    stage: excecute
-    script:
-        - "java src/Main"
