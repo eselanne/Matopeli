@@ -4,17 +4,25 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
+/**
+ * Luokka edustaa pelin valikkoja. Pelin valikkoja ovat: päävalikko, ohjeet-valikko ja game over -valikko.
+ *
+ */
 public class MainMenu {
 	
-	// main menu
+	// päävalikon laatikot
 	public Rectangle playNappi = new Rectangle(Game.WIDTH/4 + 70, 150, 100, 50);
 	public Rectangle ohjeetNappi = new Rectangle(Game.WIDTH/4 + 70, 250, 100 , 50);
 	public Rectangle exitNappi = new Rectangle(Game.WIDTH/4 + 70, 350, 100, 50);
 	
-	// game over
+	// game over -valikon laatikot
 	public Rectangle uusiPeliNappi = new Rectangle(Game.WIDTH/4 + 70, 200, 130, 50);
 	public Rectangle paavalikkoonNappi = new Rectangle(Game.WIDTH/4 + 45, 300, 180, 50);
 	
+	/**
+	 * Piirtää päävalikkojen tekstit ja laatikot
+	 * 
+	 */
 	public void render(Graphics g) {
 		
 		// otsikko
@@ -36,20 +44,25 @@ public class MainMenu {
 		g2d.draw(ohjeetNappi);
 		g2d.draw(exitNappi);
 		
-		// high score teksti
+		// ennätys-teksti
 		Font font2 = new Font("monospaced", Font.PLAIN, 30);
 		g.setFont(font2);
 		g.drawString("Ennätys: " + Game.highScore, Game.WIDTH/4 + 20, 460);
 	}
 	
+	/**
+	 * Piirtää game over -valikon tekstit ja laatikot.
+	 * 
+	 */
 	public void renderGameOver(Graphics g) {
 		
-		// otsikko + tulos
+		// otsikko
 		Font font0 = new Font("century gothic", Font.BOLD, 50);
 		g.setFont(font0);
 		g.setColor(Color.white);
 		g.drawString("PELI PÄÄTTYI", Game.WIDTH/5, 100);
 		
+		// tulos
 		Font font1 = new Font("monospaced", Font.PLAIN, 35);
 		g.setFont(font1);
 		g.drawString("Tuloksesi: " + (Game.getScore()), Game.WIDTH/5 + 30, 150);
@@ -67,6 +80,10 @@ public class MainMenu {
 		
 	}
 	
+	/**
+	 * Piirtää ohjeet-valikon tekstit ja laatikot.
+	 * 
+	 */
 	public void renderOhjeet(Graphics g) {
 		
 		// otsikko
@@ -75,6 +92,7 @@ public class MainMenu {
 		g.setColor(Color.white);
 		g.drawString("OHJEET", Game.WIDTH/3, 100);
 		
+		// teksti
 		Font font1 = new Font("arial", Font.BOLD, 20);
 		g.setFont(font1);
 		g.setColor(Color.white);

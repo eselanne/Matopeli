@@ -116,7 +116,9 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 		
 	}
 	
-	
+	/**
+	 * Madon toiminnallisuus.
+	 */
 	public void tick () {
 		if(State == STATE.GAME) {
 			if(snake.size() ==0 ) {
@@ -190,25 +192,34 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 		}		
 	}
 	
+	/**
+	 * Palauttaa pelin tuloksen.
+	 * @return pelin tuloksen
+	 */
 	public static int getScore() {
 		return score;
 	}
 	
+	/**
+	 * Piirtää ikkunaan tarvittavat komponentit.
+	 */
 	public void paint(Graphics g) {
 		g.clearRect(0, 0, WIDTH, HEIGHT);
-		g.setColor(Color.gray);
+		g.setColor(Color.black);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 
 		
 		if(State == STATE.GAME) {
-			g.drawImage(taustaPeli.getImage(), 0, 0, WIDTH, HEIGHT, null);
-		/**
+			g.drawImage(taustaPeli.getImage(), 0, 0, WIDTH, HEIGHT, null); // taustakuva
+			
+		    /** Ruudukko
 			for(int i = 0; i < WIDTH/10; i++) {
 				g.drawLine(i*10, 0, i*10, HEIGHT);
 			}
 			for(int i = 0; i < HEIGHT/10; i++) {
 				g.drawLine(0, i*10,HEIGHT , i*10);
-			}*/
+			}
+			*/
 			for (int i = 0; i < snake.size(); i++) {
 				snake.get(i).draw(g);
 			}
@@ -216,14 +227,14 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 				apples.get(i).draw(g);
 			}
 		}else if(State == STATE.MENU) {
-			g.drawImage(taustaValikko.getImage(), 0, 0, WIDTH, HEIGHT, null);
-			menu.render(g);
+			g.drawImage(taustaValikko.getImage(), 0, 0, WIDTH, HEIGHT, null); // taustakuva
+			menu.render(g); // piiretään päävalikko
 		}else if(State == STATE.GAMEOVER) {
-			g.drawImage(taustaValikko.getImage(), 0, 0, WIDTH, HEIGHT, null);
-			menu.renderGameOver(g);
+			g.drawImage(taustaValikko.getImage(), 0, 0, WIDTH, HEIGHT, null); // taustakuva
+			menu.renderGameOver(g); // piiretään Game over -valikko
 		}else if (State == STATE.OHJEET) {
-			g.drawImage(taustaValikko.getImage(), 0, 0, WIDTH, HEIGHT, null);
-			menu.renderOhjeet(g);
+			g.drawImage(taustaValikko.getImage(), 0, 0, WIDTH, HEIGHT, null); // taustakuva
+			menu.renderOhjeet(g); // piiretään ohjeet-valikko
 		}
 	}
 	
@@ -235,6 +246,10 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 		}
 	}
 	
+	/**
+	 * Lukee tekstitiedostosta aiemman ennätyksen.
+	 * @return ennätyksen tekstitiedostosta
+	 */
 	public int lueHighScore(){
 		Scanner lukija;
 		int hs = 0;
@@ -250,6 +265,9 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 		return hs;
 	}
 	
+	/**
+	 * Kirjoittaa uuden ennätyksen tekstitiedostoon.
+	 */
 	public void uusiEnnatys() {
 		try {
 			FileWriter fw = new FileWriter(hsFile,false);
@@ -262,6 +280,9 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 		}
 	}
 
+	/**
+	 * Kun peli on käynnissä, metodi seuraa nuolinäppäimien syötettä.
+	 */
 	@Override
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
@@ -296,41 +317,31 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 	}
 
 	@Override
-	public void keyReleased(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void keyReleased(KeyEvent arg0) {}
 
 	@Override
-	public void keyTyped(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void keyTyped(KeyEvent arg0) {}
 
 	@Override
-	public void mouseClicked(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void mouseClicked(MouseEvent arg0) {}
 
 	@Override
-	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void mouseEntered(MouseEvent arg0) {}
 
 	@Override
-	public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	public void mouseExited(MouseEvent arg0) {}
+	
+	/**
+	 * Kun pelitila ei ole pelissä, metodi seuraa hiiren syötettä.
+	 */
 	@Override
 	public void mousePressed(MouseEvent e) {
 		int mx = e.getX();
 		int my = e.getY();
 		
+		// päävalikko
 		if(State == STATE.MENU) {
+			
 			// pelaa-nappi
 			if(mx >= Game.WIDTH/4 + 70 && mx <= Game.WIDTH/4 + 70 + 100) {
 				if(my >= 150 && my <= 200) {
@@ -356,18 +367,18 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 			}
 		}
 		
+		// päättynyt peli
 		if(State == STATE.GAMEOVER) {
+			
 			// uusipeli-nappi
 			if(mx >= Game.WIDTH/4 + 70 && mx <= Game.WIDTH/4 + 70 + 130) {
 				if(my >= 200 && my <= 250) {
 					restart();
 					State = STATE.GAME;
-					//xCoord = 10;
-					//yCoord = 10;
 				}
 			}
 			
-			// päävalikko-nappi
+			// päävalikkoon-nappi
 			if(mx >= Game.WIDTH/4 + 45 && mx <= Game.WIDTH/4 + 45 + 180) {
 				if(my >= 300 && my <= 350) {
 					restart();
@@ -376,23 +387,18 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 			}
 		}
 		
+		// ohjeet-sivu
 		if(State == STATE.OHJEET) {
-			// päävalikko-nappi
+			
+			// päävalikkoon-nappi
 			if(mx >= Game.WIDTH/4 + 45 && mx <= Game.WIDTH/4 + 45 + 180) {
 				if(my >= 300 && my <= 350) {
-					//restart();
 					State = STATE.MENU;
 				}
 			}
-		}
-		
+		}	
 	}
 
 	@Override
-	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	
+	public void mouseReleased(MouseEvent arg0) {}
 }

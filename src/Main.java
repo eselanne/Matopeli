@@ -2,7 +2,9 @@ import javax.swing.JFrame;
 
 public class Main {
 
-	
+	/**
+	 * Luo ikkunan.
+	 */
 	public Main() {
 		
 		JFrame frame = new JFrame();
@@ -17,6 +19,10 @@ public class Main {
 		frame.setVisible(true);
 	}
 	
+	/**
+	 * Käynnistää ohjelman.
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		new Main();
 	}

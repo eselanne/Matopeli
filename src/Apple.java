@@ -1,7 +1,4 @@
-import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
 
@@ -53,7 +50,7 @@ public class Apple {
 
 	/**
      * Asettaa omenalle y-koordinaatin
-     * @param xCoord Omenan y-koordinaatti
+     * @param yCoord Omenan y-koordinaatti
      */
 	public void setyCoord(int yCoord) {
 		this.yCoord = yCoord;
@@ -61,7 +58,7 @@ public class Apple {
 	
 	/**
 	 * Piirtää omenan kuvan koordinaattien mukaiseen kohtaan.
-	 * @param g Graphics-luokan esiintymä
+	 * 
 	 */
 	public void draw (Graphics g) {
 		
