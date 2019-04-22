@@ -18,26 +18,30 @@ import java.util.Scanner;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+/**
+ * Luokka sisältää itse pelin toiminnallisuuden.
+ *
+ */
 public class Game extends JPanel implements Runnable, KeyListener, MouseListener {
 	
 	private static final long serialVersionUID = 1L;
-	public static final int WIDTH = 500, HEIGHT = 500;
+	public static final int WIDTH = 500, HEIGHT = 500; // ikkunan leveys ja korkeus
 	private Thread thread;
 	private boolean running;
-	private boolean right = true, left = false, up = false, down = false;
+	private boolean right = true, left = false, up = false, down = false; // madon suunta
 	private Snakeblock s;
-	private ArrayList<Snakeblock> snake;
+	private ArrayList<Snakeblock> snake; // mato
 	private Apple apple;
 	private ArrayList<Apple> apples;
 	private Random r;
-	private int xCoord = 10, yCoord = 10, size = 5;
+	private int xCoord = 10, yCoord = 10, size = 5; // madon aloituskoordinaatit ja -pituus
 	private int ticks = 0;
-	public static int highScore;
-	public static int score = 0;
-	private MainMenu menu;
+	public static int highScore; // ennätys
+	public static int score = 0; // reaaliaikainen tulos
+	private MainMenu menu; // pelin valikko
 	File hsFile;
-	ImageIcon taustaValikko;
-	ImageIcon taustaPeli;
+	ImageIcon taustaValikko; // valikoiden taustakuva 
+	ImageIcon taustaPeli; // pelin taustakuva
 	
 	// kuvaa ohjelman tilaa
 	private enum STATE{
@@ -47,6 +51,9 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 	// ohjelman tila
 	private STATE State = STATE.MENU;
 	
+	/**
+	 * Määrittää peli-ikkunan ja tarvittavat muuttujat.
+	 */
 	public Game() {
 		setFocusable(true);
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -66,6 +73,9 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 		start();
 	}
 	
+	/**
+	 * Käynnistää pelin uudestaan.
+	 */
 	public void restart() {
 		xCoord = 10;
 		yCoord = 10;
@@ -83,6 +93,9 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 		
 	}
 	
+	/**
+	 * Käynnistää pelin.
+	 */
 	public void start() {
 		running = true;
 		thread = new Thread(this);
@@ -90,6 +103,9 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 		
 	}
 	
+	/**
+	 * Sammuttaa pelin.
+	 */
 	public void stop() {
 		running = false;
 		try {
@@ -99,6 +115,7 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 		}
 		
 	}
+	
 	
 	public void tick () {
 		if(State == STATE.GAME) {
@@ -146,7 +163,8 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 					score++;
 				}
 			}
-			//T�rm�ys matoon
+			
+			//Törmäys matoon
 			for(int i = 0; i < snake.size(); i++) {
 				if(xCoord == snake.get(i).getxCoord() && yCoord == snake.get(i).getyCoord()) {
 					if (i != snake.size()-1) {
@@ -159,7 +177,7 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 					}
 				}
 			}
-			//T�rm�ys sein��n
+			//Törmäys seinään
 			if(xCoord < 0 || xCoord > 49 || yCoord < 0 || yCoord > 49) {
 				if(score > highScore) {
 					highScore = score;
@@ -349,7 +367,7 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 				}
 			}
 			
-			// p��valikko-nappi
+			// päävalikko-nappi
 			if(mx >= Game.WIDTH/4 + 45 && mx <= Game.WIDTH/4 + 45 + 180) {
 				if(my >= 300 && my <= 350) {
 					restart();
@@ -359,7 +377,7 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 		}
 		
 		if(State == STATE.OHJEET) {
-			// p��valikko-nappi
+			// päävalikko-nappi
 			if(mx >= Game.WIDTH/4 + 45 && mx <= Game.WIDTH/4 + 45 + 180) {
 				if(my >= 300 && my <= 350) {
 					//restart();
