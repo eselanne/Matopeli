@@ -7,15 +7,15 @@ stages:
 perftest_builder:
     stage: build
     script:
-         - "javac src/Main.java"
-         - "javac src/Game.java"
-         - "javac src/MainMenu.java"
-         - "javac src/Apple.java"
-         - "javac src/Snakeblock.java"
+        - "javac src/Game.java"
+        - "javac src/Main.java"
+        - "javac src/MainMenu.java"
+        - "javac src/Apple.java"
+        - "javac src/Snakeblock.java"
     artifacts:
         paths:
-            - "src/Main.class"
             - "src/Game.class"
+            - "src/Main.class"
             - "src/MainMenu.class"
             - "src/Apple.class"
             - "src/Snakeblock.class"
