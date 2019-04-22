@@ -2,9 +2,9 @@ image: openjdk:11
 
 stages:
     - build
-    - test
+    - execute
     
-perftest_builder:
+build:
     stage: build
     script:
         - "javac src/Game.java"
@@ -21,13 +21,7 @@ perftest_builder:
             - "bin/Main.class"
             - "bin/MainMenu.class"
             
-perftest_validator:
-    stage: test
-    before_script:
-        - "javac src/Snakeblock.java"
-        - "javac src/Apple.java"
-        - "javac src/Game.java"
-        - "javac src/Main.java"
-        - "javac src/MainMenu.java"
+execute:
+    stage: excecute
     script:
         - "java src/Main"
