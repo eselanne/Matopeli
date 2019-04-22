@@ -1,17 +1,33 @@
-image: java:latest
+image: openjdk:11
 
 stages:
-  - build
-  - execute
+    - build
+    - test
+    
+perftest_builder:
+    stage: build
+    script:
+        - "javac src/Snakeblock.java"
+        - "javac src/Apple.java"
+        - "javac src/Game.java"
+        - "javac src/Main.java"
+        - "javac src/MainMenu.java"
 
-build:
-  stage: build
-  script: /usr/lib/jvm/java-8-openjdk-amd64/bin/javac Main.java
-  artifacts:
-    paths:
-     - Main.*
-
-execute:
-  stage: execute
-  script: /usr/lib/jvm/java-8-openjdk-amd64/bin/java Main
-
+    artifacts:
+        paths:
+            - "src/Snakeblock.class"
+            - "src/Apple.class"
+            - "src/Game.class"
+            - "src/Main.class"
+            - "src/MainMenu.class"
+            
+perftest_validator:
+    stage: test
+    before_script:
+        - "javac src/Snakeblock.java"
+        - "javac src/Apple.java"
+        - "javac src/Game.java"
+        - "javac src/Main.java"
+        - "javac src/MainMenu.java"
+    script:
+        - "java src/Main"
