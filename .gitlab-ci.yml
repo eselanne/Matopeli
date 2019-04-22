@@ -1,23 +1,17 @@
 image: java:latest
 
 stages:
-    - build
+  - build
+  - execute
 
-    
-perftest_builder:
-    stage: build
-    script:
-        - "javac src/Snakeblock.java"
-        - "javac src/Apple.java"
-        - "javac src/Game.java"
-        - "javac src/Main.java"
-        - "javac src/MainMenu.java"
+build:
+  stage: build
+  script: /usr/lib/jvm/java-8-openjdk-amd64/bin/javac Main.java
+  artifacts:
+    paths:
+     - Main.*
 
-    artifacts:
-        paths:
-            - "src/Snakeblock.*"
-            - "src/Apple.*"
-            - "src/Game.*"
-            - "src/Main.*"
-            - "src/MainMenu.*"
-            
+execute:
+  stage: execute
+  script: /usr/lib/jvm/java-8-openjdk-amd64/bin/java Main
+
