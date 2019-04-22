@@ -1,0 +1,28 @@
+image: openjdk:11
+
+stages:
+    - build
+    - test
+    
+perftest_builder:
+    stage: build
+    script:
+        - "javac src/Game.java"
+        - "javac src/Main.java"
+        - "javac src/MainMenu.java"
+        - "javac src/Apple.java"
+        - "javac src/Snakeblock.java"
+    artifacts:
+        paths:
+            - "src/Game.class"
+            - "src/Main.class"
+            - "src/MainMenu.class"
+            - "src/Apple.class"
+            - "src/Snakeblock.class"
+            
+perftest_validator:
+    stage: test
+    before_script:
+        - "javac src/Main.java"
+    script:
+        - "java src.Main"
