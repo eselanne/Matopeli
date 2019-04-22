@@ -6,11 +6,11 @@ stages:
     
 build:
     stage: build
-    script: javac src/Main.java
+    script: /usr/lib/jvm/java-8-openjdk-amd64/bin/javac Main.java
     artifacts:
         paths:
             - Main.*
             
 execute:
     stage: execute
-    script: java src/Main
+    script: /usr/lib/jvm/java-8-openjdk-amd64/bin/java Main
