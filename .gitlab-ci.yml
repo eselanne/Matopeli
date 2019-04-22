@@ -7,9 +7,9 @@ stages:
 perftest_builder:
     stage: build
     script:
+        - "javac src/Game.java"
         - "javac src/Snakeblock.java"
         - "javac src/Apple.java"
-        - "javac src/Game.java"
         - "javac src/Main.java"
         - "javac src/MainMenu.java"
 
