@@ -36,7 +36,8 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 	public static int score = 0;
 	private MainMenu menu;
 	File hsFile;
-	ImageIcon tausta;
+	ImageIcon taustaValikko;
+	ImageIcon taustaPeli;
 	
 	// kuvaa ohjelman tilaa
 	private enum STATE{
@@ -56,7 +57,8 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 		apples = new ArrayList<Apple>();
 		r = new Random();
 		menu = new MainMenu();
-		tausta = new ImageIcon(getClass().getClassLoader().getResource("tausta_reunoilla.png"));
+		taustaValikko = new ImageIcon(getClass().getClassLoader().getResource("tausta_menu.png"));
+		taustaPeli = new ImageIcon(getClass().getClassLoader().getResource("tausta_peli.png"));
 		
 		hsFile = new File(".//res//highscore.txt");
 		highScore = lueHighScore();
@@ -178,10 +180,10 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 		g.clearRect(0, 0, WIDTH, HEIGHT);
 		g.setColor(Color.gray);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
-		g.drawImage(tausta.getImage(), 0, 0, WIDTH, HEIGHT, null);
 
 		
 		if(State == STATE.GAME) {
+			g.drawImage(taustaPeli.getImage(), 0, 0, WIDTH, HEIGHT, null);
 		/**
 			for(int i = 0; i < WIDTH/10; i++) {
 				g.drawLine(i*10, 0, i*10, HEIGHT);
@@ -196,10 +198,13 @@ public class Game extends JPanel implements Runnable, KeyListener, MouseListener
 				apples.get(i).draw(g);
 			}
 		}else if(State == STATE.MENU) {
+			g.drawImage(taustaValikko.getImage(), 0, 0, WIDTH, HEIGHT, null);
 			menu.render(g);
 		}else if(State == STATE.GAMEOVER) {
+			g.drawImage(taustaValikko.getImage(), 0, 0, WIDTH, HEIGHT, null);
 			menu.renderGameOver(g);
 		}else if (State == STATE.OHJEET) {
+			g.drawImage(taustaValikko.getImage(), 0, 0, WIDTH, HEIGHT, null);
 			menu.renderOhjeet(g);
 		}
 	}
